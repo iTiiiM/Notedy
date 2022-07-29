@@ -11,6 +11,7 @@ class HomeViewController: UIViewController {
     let appName = "Notedy"
     @IBOutlet weak var titleName: UILabel!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,5 +24,10 @@ class HomeViewController: UIViewController {
             index += 1
         }
     }
+    
+    @IBAction func noteButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "homeToList", sender: self)
+    }
+    
 }
 
