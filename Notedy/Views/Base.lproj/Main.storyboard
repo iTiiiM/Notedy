@@ -67,21 +67,21 @@
             </objects>
             <point key="canvasLocation" x="928.98550724637687" y="97.767857142857139"/>
         </scene>
-        <!--List View Controller-->
+        <!--List Activity View Controller-->
         <scene sceneID="xiN-PM-T84">
             <objects>
-                <tableViewController id="fxD-Lg-3L5" customClass="ListViewController" customModule="Notedy" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="nkh-FK-Ytg">
+                <tableViewController id="fxD-Lg-3L5" customClass="ListActivityViewController" customModule="Notedy" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="nkh-FK-Ytg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" name="SecondColor"/>
+                        <color key="backgroundColor" name="PrimaryColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="listCell" id="L5K-rs-OZU">
                                 <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="L5K-rs-OZU" id="Iw2-4a-6hN">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -91,12 +91,94 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="P4s-a7-fL6">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="UHX-LY-eBi"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="UHX-LY-eBi">
+                            <connections>
+                                <action selector="newActivity:" destination="fxD-Lg-3L5" id="Usi-nd-yqW"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="zPT-fq-kkh" kind="show" identifier="listToNewActivity" id="UYG-DO-526"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TcW-id-2Vq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1858" y="98"/>
+        </scene>
+        <!--New Activity View Controller-->
+        <scene sceneID="Fzt-R9-fUE">
+            <objects>
+                <viewController id="zPT-fq-kkh" customClass="NewActivityViewController" customModule="Notedy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KKn-S6-oVk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GYZ-as-DfO">
+                                <rect key="frame" x="20" y="108" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bUS-dI-doB">
+                                <rect key="frame" x="20" y="162" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="5GM-12-Sbv">
+                                <rect key="frame" x="20" y="216" width="374" height="34"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Time" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kaf-dS-4Sy">
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qvl-3a-ls8">
+                                        <rect key="frame" x="194" y="0.0" width="180" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="roundedRect" placeholder="Detail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1GU-fn-hLU">
+                                <rect key="frame" x="20" y="270" width="374" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="NHO-0b-0g1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="qsv-Dp-e2R"/>
+                        <color key="backgroundColor" name="PrimaryColor"/>
+                        <constraints>
+                            <constraint firstItem="qsv-Dp-e2R" firstAttribute="trailing" secondItem="5GM-12-Sbv" secondAttribute="trailing" constant="20" id="0Bp-ld-kU3"/>
+                            <constraint firstItem="5GM-12-Sbv" firstAttribute="top" secondItem="bUS-dI-doB" secondAttribute="bottom" constant="20" id="Age-eA-wNA"/>
+                            <constraint firstItem="5GM-12-Sbv" firstAttribute="leading" secondItem="qsv-Dp-e2R" secondAttribute="leading" constant="20" id="ETk-vC-H7t"/>
+                            <constraint firstItem="qsv-Dp-e2R" firstAttribute="trailing" secondItem="1GU-fn-hLU" secondAttribute="trailing" constant="20" id="Nu2-gk-ooR"/>
+                            <constraint firstItem="GYZ-as-DfO" firstAttribute="leading" secondItem="qsv-Dp-e2R" secondAttribute="leading" constant="20" id="Wt5-ih-bq6"/>
+                            <constraint firstItem="GYZ-as-DfO" firstAttribute="top" secondItem="qsv-Dp-e2R" secondAttribute="top" constant="20" id="Y7N-aF-9Yi"/>
+                            <constraint firstItem="bUS-dI-doB" firstAttribute="leading" secondItem="qsv-Dp-e2R" secondAttribute="leading" constant="20" id="anc-iH-Whh"/>
+                            <constraint firstItem="1GU-fn-hLU" firstAttribute="top" secondItem="5GM-12-Sbv" secondAttribute="bottom" constant="20" id="b13-pm-4aN"/>
+                            <constraint firstItem="qsv-Dp-e2R" firstAttribute="trailing" secondItem="bUS-dI-doB" secondAttribute="trailing" constant="20" id="dOb-rC-i2X"/>
+                            <constraint firstItem="qsv-Dp-e2R" firstAttribute="trailing" secondItem="GYZ-as-DfO" secondAttribute="trailing" constant="20" id="tyP-ty-AnN"/>
+                            <constraint firstItem="1GU-fn-hLU" firstAttribute="leading" secondItem="qsv-Dp-e2R" secondAttribute="leading" constant="20" id="wrb-Nw-3KV"/>
+                            <constraint firstItem="bUS-dI-doB" firstAttribute="top" secondItem="GYZ-as-DfO" secondAttribute="bottom" constant="20" id="yGl-oa-foe"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Eoe-Zv-zlI">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="u9J-Rf-5eM">
+                            <connections>
+                                <action selector="donePressed:" destination="zPT-fq-kkh" id="1a2-j9-Ymy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="dateLabel" destination="qvl-3a-ls8" id="WbG-W6-TLA"/>
+                        <outlet property="timeLabel" destination="Kaf-dS-4Sy" id="SNF-mC-xYa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Ce-Hw-KAd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2853.6231884057975" y="97.767857142857139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3Mh-IC-Abi">
