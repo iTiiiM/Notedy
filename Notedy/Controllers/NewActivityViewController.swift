@@ -9,10 +9,10 @@ import UIKit
 
 class NewActivityViewController: UIViewController {
 
+    @IBOutlet weak var titleLabel: UITextField!
     @IBOutlet weak var dateLabel: UITextField!
     @IBOutlet weak var timeLabel: UITextField!
-    
-    var activeTextField = UITextField()
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +23,7 @@ class NewActivityViewController: UIViewController {
         
         timeLabel.delegate = self
         
+        titleLabel.delegate = self
         
         dateLabel.text = formatDate(date: Date())
         
@@ -31,7 +32,19 @@ class NewActivityViewController: UIViewController {
     }
     
     @IBAction func donePressed(_ sender: UIBarButtonItem) {
-        navigationController?.popViewController(animated: true)
+        if titleLabel.text != ""{
+            
+            //code here
+            
+            navigationController?.popViewController(animated: true)
+        } else {
+            let alert = UIAlertController(title: "Alert", message: "Title cannot be empty.", preferredStyle: .alert)
+            self.present(alert, animated: true, completion: nil)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                alert.dismiss(animated: true, completion: nil)
+            }
+        }
     }
 }
 
@@ -44,6 +57,7 @@ extension NewActivityViewController: UITextFieldDelegate{
             openDatePicker(dateTextField: dateLabel)
         
             openTimePicker(timeTextField: timeLabel)
+        
     }
 }
 
@@ -72,6 +86,7 @@ extension NewActivityViewController{
 
         timePicker.frame.size = CGSize(width: 0, height: 300)
         timePicker.preferredDatePickerStyle = .wheels
+        timePicker.locale = NSLocale(localeIdentifier: "en_GB") as Locale
 
         timeLabel.inputView = timePicker
 
@@ -94,7 +109,7 @@ extension NewActivityViewController{
     
     func formatTime(time: Date) -> String{
         let formatter = DateFormatter()
-        formatter.dateFormat = "hh:mm"
+        formatter.dateFormat = "HH:mm"
         return formatter.string(from: time)
     }
 }
