@@ -6,16 +6,21 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ListActivityViewController: UITableViewController {
 
+    var activities: Results<Activity>?
     
-    var todoList = ["a", "b", "c"]
+    let realm = try! Realm()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Categories"
+        
+        loadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -26,17 +31,24 @@ class ListActivityViewController: UITableViewController {
         
         navBar.tintColor = .systemBackground
         navBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.systemBackground]
+        
+        loadData()
+        
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoList.count
+        return activities?.count ?? 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath)
-        cell.textLabel?.text = todoList[indexPath.row]
+        if let items = activities?[indexPath.row]{
+            cell.textLabel?.text = items.title
+        } else{
+            cell.textLabel?.text = "Add some activity that you thinking about."
+        }
         return cell
     }
     
@@ -44,9 +56,29 @@ class ListActivityViewController: UITableViewController {
         
     }
     
+    func loadData(){
+        
+        activities = realm.objects(Activity.self)
+        
+        tableView.reloadData()
+        
+    }
+    
+    func deleteData(at indexPath: IndexPath){
+        if let selectedItem = activities?[indexPath.row]{
+            do{
+                try realm.write {
+                    realm.delete(selectedItem)
+                    tableView.reloadData()
+                }
+            } catch {
+                print("Error delete data. \(error)")
+            }
+        }
+    }
+    
     
     @IBAction func newActivity(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "listToNewActivity", sender: self)
     }
-    
 }

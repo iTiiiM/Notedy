@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8754F9DD289503AB0034920A /* NewActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8754F9DC289503AB0034920A /* NewActivityViewController.swift */; };
+		8793E6B5289A3C7A00F4B1C8 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793E6B4289A3C7A00F4B1C8 /* Activity.swift */; };
 		879410292893BEE5007A793D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879410282893BEE5007A793D /* AppDelegate.swift */; };
 		8794102B2893BEE5007A793D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8794102A2893BEE5007A793D /* SceneDelegate.swift */; };
 		8794102D2893BEE5007A793D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8794102C2893BEE5007A793D /* HomeViewController.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		8754F9DC289503AB0034920A /* NewActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityViewController.swift; sourceTree = "<group>"; };
+		8793E6B4289A3C7A00F4B1C8 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		879410252893BEE5007A793D /* Notedy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notedy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		879410282893BEE5007A793D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8794102A2893BEE5007A793D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,11 +43,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7CC86D682F1E6EE64A3E847E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		8794101C2893BEE5007A793D = {
 			isa = PBXGroup;
 			children = (
 				879410272893BEE5007A793D /* Notedy */,
 				879410262893BEE5007A793D /* Products */,
+				7CC86D682F1E6EE64A3E847E /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,6 +82,7 @@
 		8794103C2893BF0B007A793D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8793E6B4289A3C7A00F4B1C8 /* Activity.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -176,6 +187,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8793E6B5289A3C7A00F4B1C8 /* Activity.swift in Sources */,
 				8794102D2893BEE5007A793D /* HomeViewController.swift in Sources */,
 				8754F9DD289503AB0034920A /* NewActivityViewController.swift in Sources */,
 				879410292893BEE5007A793D /* AppDelegate.swift in Sources */,

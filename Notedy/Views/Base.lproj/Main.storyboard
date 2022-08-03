@@ -173,7 +173,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="dateLabel" destination="qvl-3a-ls8" id="WbG-W6-TLA"/>
+                        <outlet property="detailLabel" destination="1GU-fn-hLU" id="zTZ-yB-hdi"/>
                         <outlet property="doneButton" destination="u9J-Rf-5eM" id="vLw-9l-4cU"/>
+                        <outlet property="locationLabel" destination="bUS-dI-doB" id="c5w-B0-fSC"/>
                         <outlet property="timeLabel" destination="Kaf-dS-4Sy" id="SNF-mC-xYa"/>
                         <outlet property="titleLabel" destination="GYZ-as-DfO" id="SEb-DN-r5J"/>
                     </connections>

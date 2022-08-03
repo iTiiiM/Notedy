@@ -6,13 +6,23 @@
 //
 
 import UIKit
+import RealmSwift
 
 class NewActivityViewController: UIViewController {
 
     @IBOutlet weak var titleLabel: UITextField!
+    @IBOutlet weak var locationLabel: UITextField!
+    @IBOutlet weak var detailLabel: UITextField!
+    
     @IBOutlet weak var dateLabel: UITextField!
     @IBOutlet weak var timeLabel: UITextField!
+    
+    
     @IBOutlet weak var doneButton: UIBarButtonItem!
+    
+    let realm = try! Realm()
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,10 +43,7 @@ class NewActivityViewController: UIViewController {
     
     @IBAction func donePressed(_ sender: UIBarButtonItem) {
         if titleLabel.text != ""{
-            
-            //code here
-            
-            navigationController?.popViewController(animated: true)
+            saveActivity()
         } else {
             let alert = UIAlertController(title: "Alert", message: "Title cannot be empty.", preferredStyle: .alert)
             self.present(alert, animated: true, completion: nil)
@@ -46,10 +53,37 @@ class NewActivityViewController: UIViewController {
             }
         }
     }
+    
+//MARK: - Data Data Manipulation Methods
+    func saveActivity(){
+        let newActivity = Activity()
+        
+        newActivity.title = titleLabel.text!
+        
+        if let location = locationLabel.text{
+            newActivity.location = location
+        }
+        
+        if let detail = detailLabel.text{
+            newActivity.detail = detail
+        }
+        
+        newActivity.time = timeLabel.text!
+        newActivity.date = dateLabel.text!
+        
+        do{
+            try realm.write {
+                realm.add(newActivity)
+                navigationController?.popViewController(animated: true)
+            }
+        } catch {
+            print("Error saving data. \(error)")
+        }
+    }
 }
 
 
-//MARK: - TextFieldDelegate
+//MARK: - TextFieldDelegate Methods
 extension NewActivityViewController: UITextFieldDelegate{
         
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -151,3 +185,4 @@ extension NewActivityViewController{
         view.endEditing(true)
     }
 }
+
