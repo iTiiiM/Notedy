@@ -7,5 +7,4 @@ target 'Notedy' do
 
   # Pods for Notedy
   pod 'RealmSwift', '~>10'
-
 end
