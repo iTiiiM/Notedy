@@ -6,5 +6,6 @@ target 'Notedy' do
   use_frameworks!
 
   # Pods for Notedy
+  pod 'RealmSwift', '~>10'
 
 end

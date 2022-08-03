@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30DE416F50F657EFCA9A6F7A /* Pods_Notedy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F49BC5FDABB213C2ABB93A5A /* Pods_Notedy.framework */; };
 		8754F9DD289503AB0034920A /* NewActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8754F9DC289503AB0034920A /* NewActivityViewController.swift */; };
 		8793E6B5289A3C7A00F4B1C8 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8793E6B4289A3C7A00F4B1C8 /* Activity.swift */; };
 		879410292893BEE5007A793D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879410282893BEE5007A793D /* AppDelegate.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		12C404EE2114742A101E173E /* Pods-Notedy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Notedy.release.xcconfig"; path = "Target Support Files/Pods-Notedy/Pods-Notedy.release.xcconfig"; sourceTree = "<group>"; };
 		8754F9DC289503AB0034920A /* NewActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityViewController.swift; sourceTree = "<group>"; };
 		8793E6B4289A3C7A00F4B1C8 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		879410252893BEE5007A793D /* Notedy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notedy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -30,6 +32,8 @@
 		879410342893BEE6007A793D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		879410362893BEE6007A793D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		879410402893E278007A793D /* ListActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListActivityViewController.swift; sourceTree = "<group>"; };
+		B29F3FA5533EC9E1C2FC9FCC /* Pods-Notedy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Notedy.debug.xcconfig"; path = "Target Support Files/Pods-Notedy/Pods-Notedy.debug.xcconfig"; sourceTree = "<group>"; };
+		F49BC5FDABB213C2ABB93A5A /* Pods_Notedy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Notedy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30DE416F50F657EFCA9A6F7A /* Pods_Notedy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +51,8 @@
 		7CC86D682F1E6EE64A3E847E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				B29F3FA5533EC9E1C2FC9FCC /* Pods-Notedy.debug.xcconfig */,
+				12C404EE2114742A101E173E /* Pods-Notedy.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -56,6 +63,7 @@
 				879410272893BEE5007A793D /* Notedy */,
 				879410262893BEE5007A793D /* Products */,
 				7CC86D682F1E6EE64A3E847E /* Pods */,
+				97193C6D881440E12B660775 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -116,6 +124,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		97193C6D881440E12B660775 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F49BC5FDABB213C2ABB93A5A /* Pods_Notedy.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -123,9 +139,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 879410392893BEE6007A793D /* Build configuration list for PBXNativeTarget "Notedy" */;
 			buildPhases = (
+				8ABF3DB3097730C8ED3F7680 /* [CP] Check Pods Manifest.lock */,
 				879410212893BEE5007A793D /* Sources */,
 				879410222893BEE5007A793D /* Frameworks */,
 				879410232893BEE5007A793D /* Resources */,
+				080AE6ABDEE249296A3C3AB1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -181,6 +199,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		080AE6ABDEE249296A3C3AB1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Notedy/Pods-Notedy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Notedy/Pods-Notedy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Notedy/Pods-Notedy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8ABF3DB3097730C8ED3F7680 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Notedy-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		879410212893BEE5007A793D /* Sources */ = {
@@ -334,6 +394,7 @@
 		};
 		8794103A2893BEE6007A793D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B29F3FA5533EC9E1C2FC9FCC /* Pods-Notedy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -362,6 +423,7 @@
 		};
 		8794103B2893BEE6007A793D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 12C404EE2114742A101E173E /* Pods-Notedy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
