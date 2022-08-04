@@ -18,8 +18,8 @@ class ListActivityViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Categories"
-        
+        title = "Activity List"
+    
         loadData()
     }
     
@@ -32,6 +32,7 @@ class ListActivityViewController: UITableViewController {
         navBar.tintColor = .systemBackground
         navBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.systemBackground]
         
+        
         loadData()
         
     }
@@ -43,17 +44,32 @@ class ListActivityViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath) as! ImformationTableViewCell
         if let items = activities?[indexPath.row]{
-            cell.textLabel?.text = items.title
-        } else{
-            cell.textLabel?.text = "Add some activity that you thinking about."
+            cell.titleLabel.text = items.title
+            cell.timeLabel.text = items.time
+            cell.dateTime.text = items.date
+            
+            if items.location != ""{
+                cell.locationLabel.text = items.location
+            } else {
+                cell.locationLabel.text = "No location"
+            }
+            
+            if items.detail != ""{
+                cell.detailLabel.text = items.detail
+            } else {
+                cell.detailLabel.text = "No detail"
+            }
+            
+            
         }
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+//        deleteData(at: indexPath)
     }
     
     func loadData(){

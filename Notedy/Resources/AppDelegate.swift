@@ -25,6 +25,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        print("Realm's Local : \(Realm.Configuration.defaultConfiguration.fileURL)")
         
+        //stop navigation bar background changes when scrolling down
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.configureWithOpaqueBackground()
+        navigationBarAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.systemBackground]
+        navigationBarAppearance.backgroundColor = UIColor(named: "PrimaryColor")
+        UINavigationBar.appearance().standardAppearance = navigationBarAppearance
+        
         return true
     }
 

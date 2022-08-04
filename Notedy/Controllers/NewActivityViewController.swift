@@ -51,11 +51,13 @@ class NewActivityViewController: UIViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                 alert.dismiss(animated: true, completion: nil)
             }
+            
         }
     }
     
 //MARK: - Data Data Manipulation Methods
     func saveActivity(){
+        
         let newActivity = Activity()
         
         newActivity.title = titleLabel.text!

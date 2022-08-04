@@ -17,6 +17,7 @@
 		879410322893BEE6007A793D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 879410312893BEE6007A793D /* Assets.xcassets */; };
 		879410352893BEE6007A793D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 879410332893BEE6007A793D /* LaunchScreen.storyboard */; };
 		879410412893E278007A793D /* ListActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879410402893E278007A793D /* ListActivityViewController.swift */; };
+		87A29568289BD36C003A72DD /* ImformationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A29567289BD36C003A72DD /* ImformationTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		879410342893BEE6007A793D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		879410362893BEE6007A793D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		879410402893E278007A793D /* ListActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListActivityViewController.swift; sourceTree = "<group>"; };
+		87A29567289BD36C003A72DD /* ImformationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImformationTableViewCell.swift; sourceTree = "<group>"; };
 		B29F3FA5533EC9E1C2FC9FCC /* Pods-Notedy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Notedy.debug.xcconfig"; path = "Target Support Files/Pods-Notedy/Pods-Notedy.debug.xcconfig"; sourceTree = "<group>"; };
 		F49BC5FDABB213C2ABB93A5A /* Pods_Notedy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Notedy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -110,6 +112,7 @@
 				8794102C2893BEE5007A793D /* HomeViewController.swift */,
 				879410402893E278007A793D /* ListActivityViewController.swift */,
 				8754F9DC289503AB0034920A /* NewActivityViewController.swift */,
+				87A29567289BD36C003A72DD /* ImformationTableViewCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				8794102D2893BEE5007A793D /* HomeViewController.swift in Sources */,
 				8754F9DD289503AB0034920A /* NewActivityViewController.swift in Sources */,
 				879410292893BEE5007A793D /* AppDelegate.swift in Sources */,
+				87A29568289BD36C003A72DD /* ImformationTableViewCell.swift in Sources */,
 				879410412893E278007A793D /* ListActivityViewController.swift in Sources */,
 				8794102B2893BEE5007A793D /* SceneDelegate.swift in Sources */,
 			);
