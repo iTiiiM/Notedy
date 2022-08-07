@@ -1,47 +1,49 @@
 //
-//  NewActivityViewController.swift
+//  EditActivityViewController.swift
 //  Notedy
 //
-//  Created by Nuntapat Hirunnattee on 30/7/2565 BE.
+//  Created by Nuntapat Hirunnattee on 6/8/2565 BE.
 //
 
 import UIKit
 import RealmSwift
-
-class NewActivityViewController: UIViewController {
-
+class EditActivityViewController: UIViewController {
+    
     @IBOutlet weak var titleLabel: UITextField!
     @IBOutlet weak var locationLabel: UITextField!
+    @IBOutlet weak var timeLabel: UITextField!
+    @IBOutlet weak var dateLabel: UITextField!
     @IBOutlet weak var detailLabel: UITextField!
     
-    @IBOutlet weak var dateLabel: UITextField!
-    @IBOutlet weak var timeLabel: UITextField!
-    
-    @IBOutlet weak var doneButton: UIBarButtonItem!
+    @IBOutlet weak var testTimeLabel: UILabel!
     
     let realm = try! Realm()
     
     
+    var selectedActivity: Activity?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        title = "Edit Activity"
         
-        title = "New Activity"
+        titleLabel.text = selectedActivity?.title
+        locationLabel.text = selectedActivity?.location
+        timeLabel.text = selectedActivity?.time
+        dateLabel.text = selectedActivity?.date
+        detailLabel.text = selectedActivity?.detail
         
-        dateLabel.delegate = self
-        
-        timeLabel.delegate = self
-        
-        titleLabel.delegate = self
-        
-        dateLabel.text = formatDate(date: Date())
-        
-        timeLabel.text = formatTime(time: Date())
+        //Testing
+    }
+    
+    @IBAction func selectTimePressed(_ sender: UIButton) {
         
     }
     
+    
     @IBAction func donePressed(_ sender: UIBarButtonItem) {
         if titleLabel.text != ""{
-            saveActivity()
+            updateActivity()
         } else {
             let alert = UIAlertController(title: "Alert", message: "Title cannot be empty.", preferredStyle: .alert)
             self.present(alert, animated: true, completion: nil)
@@ -52,55 +54,62 @@ class NewActivityViewController: UIViewController {
         }
     }
     
+    @IBAction func deletePressed(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Confirmation", message: "Are you sure to delete this activity", preferredStyle: .alert)
+        let confirm = UIAlertAction(title: "OK", style: .default) { confirm in
+            self.deleteActivity()
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(confirm)
+        alert.addAction(cancel)
+        
+        present(alert, animated: true, completion: nil)
+    }
     
-//MARK: - Data Data Manipulation Methods
-    func saveActivity(){
-        
-        let newActivity = Activity()
-        
-        newActivity.title = titleLabel.text!
-        
-        if let location = locationLabel.text{
-            newActivity.location = location
-        }
-        
-        if let detail = detailLabel.text{
-            newActivity.detail = detail
-        }
-        
-        newActivity.time = timeLabel.text!
-        newActivity.date = dateLabel.text!
-        
+    
+    
+    func updateActivity(){
         do{
             try realm.write {
-                realm.add(newActivity)
+                selectedActivity?.title = titleLabel.text!
+                
+                if let location = locationLabel.text{
+                    selectedActivity?.location = location
+                }
+                
+                selectedActivity?.time = timeLabel.text!
+                
+                selectedActivity?.date = dateLabel.text!
+                
+                if let detail = detailLabel.text{
+                    selectedActivity?.detail = detail
+                }
+                print("Update sucessed")
+                
                 navigationController?.popViewController(animated: true)
             }
         } catch {
-            print("Error saving data. \(error)")
+            print("Error update data, \(error)")
         }
     }
     
-    
-}
-
-
-//MARK: - TextFieldDelegate Methods
-extension NewActivityViewController: UITextFieldDelegate{
-        
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        
-            openDatePicker()
-        
-            openTimePicker()
-        
+    func deleteActivity(){
+        do{
+            try realm.write {
+                realm.delete(selectedActivity!)
+                navigationController?.popViewController(animated: true)
+            }
+        } catch {
+            print("Error delete data. \(error)")
+        }
     }
-}
-
-//MARK: - DatePicker
-extension NewActivityViewController{
     
-    func openDatePicker(){
+
+}
+//MARK: - DatePicker, TimePicker
+extension EditActivityViewController{
+    func openDatePicker(dateTextField: UITextField){
         
         let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
@@ -109,29 +118,26 @@ extension NewActivityViewController{
         datePicker.frame.size = CGSize(width: 0, height: 300)
         datePicker.preferredDatePickerStyle = .wheels
         
-        
         dateLabel.inputView = datePicker
         
-        
-        
-        dateLabel.inputAccessoryView = setUpToolBar()
+        dateLabel.inputAccessoryView = setUpToolBar(with: dateTextField)
     }
     
-    func openTimePicker(){
+    
+    func openTimePicker(timeTextField: UITextField){
 
         let timePicker = UIDatePicker()
         timePicker.datePickerMode = .time
         timePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
+
         timePicker.frame.size = CGSize(width: 0, height: 300)
         timePicker.preferredDatePickerStyle = .wheels
         timePicker.locale = NSLocale(localeIdentifier: "en_GB") as Locale
-        
+
         timeLabel.inputView = timePicker
 
-        timeLabel.inputAccessoryView = setUpToolBar()
+        timeLabel.inputAccessoryView = setUpToolBar(with: timeTextField)
     }
-
-    
     
     @objc func dateChange(datePicker: UIDatePicker){
         dateLabel.text = formatDate(date: datePicker.date)
@@ -149,16 +155,11 @@ extension NewActivityViewController{
         formatter.dateFormat = "HH:mm"
         return formatter.string(from: time)
     }
-    
 }
 
-
-
-
 //MARK: - ToolBar
-extension NewActivityViewController{
-    
-    func setUpToolBar() -> UIToolbar{
+extension EditActivityViewController{
+    func setUpToolBar(with textField: UITextField) -> UIToolbar{
         
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 45))
         let cancelBtn = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelBtnPressed))

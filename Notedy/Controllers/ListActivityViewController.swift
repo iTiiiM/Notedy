@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 
 class ListActivityViewController: UITableViewController {
-
+    
     var activities: Results<Activity>?
     
     let realm = try! Realm()
@@ -19,8 +19,10 @@ class ListActivityViewController: UITableViewController {
         super.viewDidLoad()
         
         title = "Activity List"
-    
+        
         loadData()
+        
+        print(activities?.isEmpty)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,13 +38,13 @@ class ListActivityViewController: UITableViewController {
         loadData()
         
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return activities?.count ?? 1
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath) as! ImformationTableViewCell
         if let items = activities?[indexPath.row]{
@@ -63,14 +65,13 @@ class ListActivityViewController: UITableViewController {
             }
             
             
+        } else {
+            cell.textLabel?.text = "No activity."
         }
         
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        deleteData(at: indexPath)
-    }
     
     func loadData(){
         
@@ -80,21 +81,21 @@ class ListActivityViewController: UITableViewController {
         
     }
     
-    func deleteData(at indexPath: IndexPath){
-        if let selectedItem = activities?[indexPath.row]{
-            do{
-                try realm.write {
-                    realm.delete(selectedItem)
-                    tableView.reloadData()
-                }
-            } catch {
-                print("Error delete data. \(error)")
-            }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        performSegue(withIdentifier: "listToEditActivity", sender: self)
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let indexPath = tableView.indexPathForSelectedRow{
+            let destinationVC = segue.destination as! EditActivityViewController
+            destinationVC.selectedActivity = activities?[indexPath.row]
         }
     }
     
     
-    @IBAction func newActivity(_ sender: UIBarButtonItem) {
+    @IBAction func addActivity(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "listToNewActivity", sender: self)
     }
 }

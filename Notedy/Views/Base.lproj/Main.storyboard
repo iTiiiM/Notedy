@@ -173,12 +173,13 @@
                     <navigationItem key="navigationItem" id="P4s-a7-fL6">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="UHX-LY-eBi">
                             <connections>
-                                <action selector="newActivity:" destination="fxD-Lg-3L5" id="Usi-nd-yqW"/>
+                                <action selector="addActivity:" destination="fxD-Lg-3L5" id="OZf-2f-ywi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="zPT-fq-kkh" kind="show" identifier="listToNewActivity" id="UYG-DO-526"/>
+                        <segue destination="pol-Vx-va5" kind="show" identifier="listToEditActivity" id="Hqs-ka-oLQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TcW-id-2Vq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -247,7 +248,7 @@
                     <navigationItem key="navigationItem" id="Eoe-Zv-zlI">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="u9J-Rf-5eM">
                             <connections>
-                                <action selector="donePressed:" destination="zPT-fq-kkh" id="1a2-j9-Ymy"/>
+                                <action selector="donePressed:" destination="zPT-fq-kkh" id="FjQ-Jh-CuS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -262,7 +263,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ce-Hw-KAd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2853.6231884057975" y="97.767857142857139"/>
+            <point key="canvasLocation" x="2850.7246376811595" y="97.767857142857139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3Mh-IC-Abi">
@@ -282,6 +283,133 @@
             </objects>
             <point key="canvasLocation" x="18.840579710144929" y="97.767857142857139"/>
         </scene>
+        <!--Edit Activity View Controller-->
+        <scene sceneID="w6v-Ph-TOT">
+            <objects>
+                <viewController id="pol-Vx-va5" customClass="EditActivityViewController" customModule="Notedy" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="d1H-Gj-S3s">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aK2-CM-Izq">
+                                <rect key="frame" x="20" y="108" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location (Optional)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pSp-rD-SYH">
+                                <rect key="frame" x="20" y="162" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="PZF-UV-rP4">
+                                <rect key="frame" x="20" y="216" width="374" height="34"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Time" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x0k-j1-RBD">
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Date" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vGp-NH-9Xb">
+                                        <rect key="frame" x="194" y="0.0" width="180" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="roundedRect" placeholder="Detail (Optional)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="etV-by-6Nk">
+                                <rect key="frame" x="20" y="270" width="374" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="1BZ-Of-Zcb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8sD-LV-X1n">
+                                <rect key="frame" x="167" y="767" width="80" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" name="SecondColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Delete">
+                                    <color key="baseBackgroundColor" systemColor="systemRedColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="deletePressed:" destination="pol-Vx-va5" eventType="touchUpInside" id="rEV-j5-1cC"/>
+                                    <action selector="noteButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HtZ-na-a86"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gbh-he-EIF">
+                                <rect key="frame" x="20" y="590" width="240" height="34"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D2E-EU-qgb">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="34"/>
+                                        <color key="backgroundColor" name="SecondColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain"/>
+                                        <connections>
+                                            <action selector="selectTimePressed:" destination="pol-Vx-va5" eventType="touchUpInside" id="Ijf-fZ-DPA"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ok-3z-9VD">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="5jV-zm-sOd"/>
+                                    <constraint firstItem="4ok-3z-9VD" firstAttribute="leading" secondItem="Gbh-he-EIF" secondAttribute="leading" id="8U8-XY-Vbn"/>
+                                    <constraint firstItem="D2E-EU-qgb" firstAttribute="leading" secondItem="Gbh-he-EIF" secondAttribute="leading" id="DLa-Pk-oPV"/>
+                                    <constraint firstAttribute="bottom" secondItem="4ok-3z-9VD" secondAttribute="bottom" id="Oi8-qv-54O"/>
+                                    <constraint firstAttribute="bottom" secondItem="D2E-EU-qgb" secondAttribute="bottom" id="Rpg-og-edE"/>
+                                    <constraint firstAttribute="trailing" secondItem="4ok-3z-9VD" secondAttribute="trailing" id="Tu0-Vt-nYl"/>
+                                    <constraint firstItem="4ok-3z-9VD" firstAttribute="top" secondItem="Gbh-he-EIF" secondAttribute="top" id="cQJ-mG-z1Q"/>
+                                    <constraint firstAttribute="trailing" secondItem="D2E-EU-qgb" secondAttribute="trailing" id="lES-Yf-3jz"/>
+                                    <constraint firstItem="D2E-EU-qgb" firstAttribute="top" secondItem="Gbh-he-EIF" secondAttribute="top" id="mFh-xA-lta"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="1fQ-I2-LYD"/>
+                        <color key="backgroundColor" name="PrimaryColor"/>
+                        <constraints>
+                            <constraint firstItem="PZF-UV-rP4" firstAttribute="top" secondItem="pSp-rD-SYH" secondAttribute="bottom" constant="20" id="9CL-Jf-dbM"/>
+                            <constraint firstItem="etV-by-6Nk" firstAttribute="top" secondItem="PZF-UV-rP4" secondAttribute="bottom" constant="20" id="B0W-1C-jUX"/>
+                            <constraint firstItem="pSp-rD-SYH" firstAttribute="leading" secondItem="1fQ-I2-LYD" secondAttribute="leading" constant="20" id="BcM-7K-AYO"/>
+                            <constraint firstItem="1fQ-I2-LYD" firstAttribute="trailing" secondItem="Gbh-he-EIF" secondAttribute="trailing" constant="154" id="HaR-Z1-aij"/>
+                            <constraint firstItem="1fQ-I2-LYD" firstAttribute="trailing" secondItem="pSp-rD-SYH" secondAttribute="trailing" constant="20" id="QSZ-wQ-pir"/>
+                            <constraint firstItem="aK2-CM-Izq" firstAttribute="leading" secondItem="1fQ-I2-LYD" secondAttribute="leading" constant="20" id="bZN-Kx-8RQ"/>
+                            <constraint firstItem="pSp-rD-SYH" firstAttribute="top" secondItem="aK2-CM-Izq" secondAttribute="bottom" constant="20" id="hLG-wI-qCA"/>
+                            <constraint firstItem="PZF-UV-rP4" firstAttribute="leading" secondItem="1fQ-I2-LYD" secondAttribute="leading" constant="20" id="hpO-6u-pbE"/>
+                            <constraint firstItem="1fQ-I2-LYD" firstAttribute="trailing" secondItem="aK2-CM-Izq" secondAttribute="trailing" constant="20" id="iN3-F3-94h"/>
+                            <constraint firstItem="etV-by-6Nk" firstAttribute="leading" secondItem="1fQ-I2-LYD" secondAttribute="leading" constant="20" id="khl-Eg-EMQ"/>
+                            <constraint firstItem="Gbh-he-EIF" firstAttribute="top" secondItem="etV-by-6Nk" secondAttribute="bottom" constant="20" id="mS4-fk-rhL"/>
+                            <constraint firstItem="aK2-CM-Izq" firstAttribute="top" secondItem="1fQ-I2-LYD" secondAttribute="top" constant="20" id="nAi-Wl-xfi"/>
+                            <constraint firstItem="1fQ-I2-LYD" firstAttribute="trailing" secondItem="etV-by-6Nk" secondAttribute="trailing" constant="20" id="pDf-7j-KgX"/>
+                            <constraint firstItem="Gbh-he-EIF" firstAttribute="leading" secondItem="1fQ-I2-LYD" secondAttribute="leading" constant="20" id="wI9-wQ-EuR"/>
+                            <constraint firstItem="1fQ-I2-LYD" firstAttribute="trailing" secondItem="PZF-UV-rP4" secondAttribute="trailing" constant="20" id="wpR-L9-pNv"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="AQB-gP-vvH">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="O61-Qx-Ubg">
+                            <connections>
+                                <action selector="donePressed:" destination="pol-Vx-va5" id="8Xt-nc-PnC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="dateLabel" destination="vGp-NH-9Xb" id="fov-F4-4V7"/>
+                        <outlet property="detailLabel" destination="etV-by-6Nk" id="00l-Yv-pW2"/>
+                        <outlet property="locationLabel" destination="pSp-rD-SYH" id="ehJ-Yw-DAZ"/>
+                        <outlet property="testTimeLabel" destination="4ok-3z-9VD" id="9IE-hk-X9q"/>
+                        <outlet property="timeLabel" destination="x0k-j1-RBD" id="fFP-c2-bLY"/>
+                        <outlet property="titleLabel" destination="aK2-CM-Izq" id="rVy-HZ-cm1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qkr-8p-wPa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1857.9710144927537" y="932.8125"/>
+        </scene>
     </scenes>
     <resources>
         <image name="list" width="256" height="256"/>
@@ -298,6 +426,9 @@
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
