@@ -253,12 +253,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="dateLabel" destination="qvl-3a-ls8" id="WbG-W6-TLA"/>
-                        <outlet property="detailLabel" destination="1GU-fn-hLU" id="zTZ-yB-hdi"/>
+                        <outlet property="dateTF" destination="qvl-3a-ls8" id="WbG-W6-TLA"/>
+                        <outlet property="detailTF" destination="1GU-fn-hLU" id="zTZ-yB-hdi"/>
                         <outlet property="doneButton" destination="u9J-Rf-5eM" id="vLw-9l-4cU"/>
-                        <outlet property="locationLabel" destination="bUS-dI-doB" id="c5w-B0-fSC"/>
-                        <outlet property="timeLabel" destination="Kaf-dS-4Sy" id="SNF-mC-xYa"/>
-                        <outlet property="titleLabel" destination="GYZ-as-DfO" id="SEb-DN-r5J"/>
+                        <outlet property="locationTF" destination="bUS-dI-doB" id="c5w-B0-fSC"/>
+                        <outlet property="timeTF" destination="Kaf-dS-4Sy" id="SNF-mC-xYa"/>
+                        <outlet property="titleTF" destination="GYZ-as-DfO" id="SEb-DN-r5J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ce-Hw-KAd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -324,51 +324,17 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8sD-LV-X1n">
-                                <rect key="frame" x="167" y="767" width="80" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HdG-S2-y5H">
+                                <rect key="frame" x="174" y="766" width="66" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" name="SecondColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Delete">
                                     <color key="baseBackgroundColor" systemColor="systemRedColor"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="deletePressed:" destination="pol-Vx-va5" eventType="touchUpInside" id="rEV-j5-1cC"/>
-                                    <action selector="noteButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HtZ-na-a86"/>
+                                    <action selector="deletePressed:" destination="pol-Vx-va5" eventType="touchUpInside" id="vxW-dV-ujS"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gbh-he-EIF">
-                                <rect key="frame" x="20" y="590" width="240" height="34"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D2E-EU-qgb">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="34"/>
-                                        <color key="backgroundColor" name="SecondColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain"/>
-                                        <connections>
-                                            <action selector="selectTimePressed:" destination="pol-Vx-va5" eventType="touchUpInside" id="Ijf-fZ-DPA"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ok-3z-9VD">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="5jV-zm-sOd"/>
-                                    <constraint firstItem="4ok-3z-9VD" firstAttribute="leading" secondItem="Gbh-he-EIF" secondAttribute="leading" id="8U8-XY-Vbn"/>
-                                    <constraint firstItem="D2E-EU-qgb" firstAttribute="leading" secondItem="Gbh-he-EIF" secondAttribute="leading" id="DLa-Pk-oPV"/>
-                                    <constraint firstAttribute="bottom" secondItem="4ok-3z-9VD" secondAttribute="bottom" id="Oi8-qv-54O"/>
-                                    <constraint firstAttribute="bottom" secondItem="D2E-EU-qgb" secondAttribute="bottom" id="Rpg-og-edE"/>
-                                    <constraint firstAttribute="trailing" secondItem="4ok-3z-9VD" secondAttribute="trailing" id="Tu0-Vt-nYl"/>
-                                    <constraint firstItem="4ok-3z-9VD" firstAttribute="top" secondItem="Gbh-he-EIF" secondAttribute="top" id="cQJ-mG-z1Q"/>
-                                    <constraint firstAttribute="trailing" secondItem="D2E-EU-qgb" secondAttribute="trailing" id="lES-Yf-3jz"/>
-                                    <constraint firstItem="D2E-EU-qgb" firstAttribute="top" secondItem="Gbh-he-EIF" secondAttribute="top" id="mFh-xA-lta"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1fQ-I2-LYD"/>
                         <color key="backgroundColor" name="PrimaryColor"/>
@@ -376,17 +342,14 @@
                             <constraint firstItem="PZF-UV-rP4" firstAttribute="top" secondItem="pSp-rD-SYH" secondAttribute="bottom" constant="20" id="9CL-Jf-dbM"/>
                             <constraint firstItem="etV-by-6Nk" firstAttribute="top" secondItem="PZF-UV-rP4" secondAttribute="bottom" constant="20" id="B0W-1C-jUX"/>
                             <constraint firstItem="pSp-rD-SYH" firstAttribute="leading" secondItem="1fQ-I2-LYD" secondAttribute="leading" constant="20" id="BcM-7K-AYO"/>
-                            <constraint firstItem="1fQ-I2-LYD" firstAttribute="trailing" secondItem="Gbh-he-EIF" secondAttribute="trailing" constant="154" id="HaR-Z1-aij"/>
                             <constraint firstItem="1fQ-I2-LYD" firstAttribute="trailing" secondItem="pSp-rD-SYH" secondAttribute="trailing" constant="20" id="QSZ-wQ-pir"/>
                             <constraint firstItem="aK2-CM-Izq" firstAttribute="leading" secondItem="1fQ-I2-LYD" secondAttribute="leading" constant="20" id="bZN-Kx-8RQ"/>
                             <constraint firstItem="pSp-rD-SYH" firstAttribute="top" secondItem="aK2-CM-Izq" secondAttribute="bottom" constant="20" id="hLG-wI-qCA"/>
                             <constraint firstItem="PZF-UV-rP4" firstAttribute="leading" secondItem="1fQ-I2-LYD" secondAttribute="leading" constant="20" id="hpO-6u-pbE"/>
                             <constraint firstItem="1fQ-I2-LYD" firstAttribute="trailing" secondItem="aK2-CM-Izq" secondAttribute="trailing" constant="20" id="iN3-F3-94h"/>
                             <constraint firstItem="etV-by-6Nk" firstAttribute="leading" secondItem="1fQ-I2-LYD" secondAttribute="leading" constant="20" id="khl-Eg-EMQ"/>
-                            <constraint firstItem="Gbh-he-EIF" firstAttribute="top" secondItem="etV-by-6Nk" secondAttribute="bottom" constant="20" id="mS4-fk-rhL"/>
                             <constraint firstItem="aK2-CM-Izq" firstAttribute="top" secondItem="1fQ-I2-LYD" secondAttribute="top" constant="20" id="nAi-Wl-xfi"/>
                             <constraint firstItem="1fQ-I2-LYD" firstAttribute="trailing" secondItem="etV-by-6Nk" secondAttribute="trailing" constant="20" id="pDf-7j-KgX"/>
-                            <constraint firstItem="Gbh-he-EIF" firstAttribute="leading" secondItem="1fQ-I2-LYD" secondAttribute="leading" constant="20" id="wI9-wQ-EuR"/>
                             <constraint firstItem="1fQ-I2-LYD" firstAttribute="trailing" secondItem="PZF-UV-rP4" secondAttribute="trailing" constant="20" id="wpR-L9-pNv"/>
                         </constraints>
                     </view>
@@ -398,12 +361,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="dateLabel" destination="vGp-NH-9Xb" id="fov-F4-4V7"/>
-                        <outlet property="detailLabel" destination="etV-by-6Nk" id="00l-Yv-pW2"/>
-                        <outlet property="locationLabel" destination="pSp-rD-SYH" id="ehJ-Yw-DAZ"/>
-                        <outlet property="testTimeLabel" destination="4ok-3z-9VD" id="9IE-hk-X9q"/>
-                        <outlet property="timeLabel" destination="x0k-j1-RBD" id="fFP-c2-bLY"/>
-                        <outlet property="titleLabel" destination="aK2-CM-Izq" id="rVy-HZ-cm1"/>
+                        <outlet property="dateTF" destination="vGp-NH-9Xb" id="fov-F4-4V7"/>
+                        <outlet property="detailTF" destination="etV-by-6Nk" id="00l-Yv-pW2"/>
+                        <outlet property="locationTF" destination="pSp-rD-SYH" id="ehJ-Yw-DAZ"/>
+                        <outlet property="timeTF" destination="x0k-j1-RBD" id="fFP-c2-bLY"/>
+                        <outlet property="titleTF" destination="aK2-CM-Izq" id="rVy-HZ-cm1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qkr-8p-wPa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

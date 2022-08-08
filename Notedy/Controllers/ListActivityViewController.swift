@@ -21,8 +21,7 @@ class ListActivityViewController: UITableViewController {
         title = "Activity List"
         
         loadData()
-        
-        print(activities?.isEmpty)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {

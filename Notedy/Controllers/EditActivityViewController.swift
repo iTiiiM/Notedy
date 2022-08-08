@@ -7,42 +7,43 @@
 
 import UIKit
 import RealmSwift
+import SwiftUI
 class EditActivityViewController: UIViewController {
     
-    @IBOutlet weak var titleLabel: UITextField!
-    @IBOutlet weak var locationLabel: UITextField!
-    @IBOutlet weak var timeLabel: UITextField!
-    @IBOutlet weak var dateLabel: UITextField!
-    @IBOutlet weak var detailLabel: UITextField!
-    
-    @IBOutlet weak var testTimeLabel: UILabel!
+    @IBOutlet weak var titleTF: UITextField!
+    @IBOutlet weak var locationTF: UITextField!
+    @IBOutlet weak var timeTF: UITextField!
+    @IBOutlet weak var dateTF: UITextField!
+    @IBOutlet weak var detailTF: UITextField!
     
     let realm = try! Realm()
-    
-    
     var selectedActivity: Activity?
+    let picker = UIDatePicker()
+    var tempTextField = UITextField()
+    var pickerMode: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         title = "Edit Activity"
         
-        titleLabel.text = selectedActivity?.title
-        locationLabel.text = selectedActivity?.location
-        timeLabel.text = selectedActivity?.time
-        dateLabel.text = selectedActivity?.date
-        detailLabel.text = selectedActivity?.detail
+        dateTF.delegate = self
+        timeTF.delegate = self
         
-        //Testing
+        //set up selected activity
+        titleTF.text = selectedActivity?.title
+        locationTF.text = selectedActivity?.location
+        timeTF.text = selectedActivity?.time
+        dateTF.text = selectedActivity?.date
+        detailTF.text = selectedActivity?.detail
+        
+        picker.frame.size = CGSize(width: 0, height: 300)
+        picker.preferredDatePickerStyle = .wheels
     }
     
-    @IBAction func selectTimePressed(_ sender: UIButton) {
-        
-    }
-    
-    
+//MARK: - Button Actions
     @IBAction func donePressed(_ sender: UIBarButtonItem) {
-        if titleLabel.text != ""{
+        if titleTF.text != ""{
             updateActivity()
         } else {
             let alert = UIAlertController(title: "Alert", message: "Title cannot be empty.", preferredStyle: .alert)
@@ -55,7 +56,7 @@ class EditActivityViewController: UIViewController {
     }
     
     @IBAction func deletePressed(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Confirmation", message: "Are you sure to delete this activity", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Confirmation", message: "Are you sure to delete this activity?", preferredStyle: .alert)
         let confirm = UIAlertAction(title: "OK", style: .default) { confirm in
             self.deleteActivity()
         }
@@ -67,22 +68,18 @@ class EditActivityViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    
-    
+//MARK: - CRUD
     func updateActivity(){
         do{
             try realm.write {
-                selectedActivity?.title = titleLabel.text!
+                selectedActivity?.title = titleTF.text!
                 
-                if let location = locationLabel.text{
+                if let location = locationTF.text{
                     selectedActivity?.location = location
                 }
-                
-                selectedActivity?.time = timeLabel.text!
-                
-                selectedActivity?.date = dateLabel.text!
-                
-                if let detail = detailLabel.text{
+                selectedActivity?.time = timeTF.text!
+                selectedActivity?.date = dateTF.text!
+                if let detail = detailTF.text{
                     selectedActivity?.detail = detail
                 }
                 print("Update sucessed")
@@ -104,90 +101,82 @@ class EditActivityViewController: UIViewController {
             print("Error delete data. \(error)")
         }
     }
-    
-
 }
-//MARK: - DatePicker, TimePicker
+
+//MARK: - TextField Delegate
+extension EditActivityViewController: UITextFieldDelegate{
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == dateTF{
+            openDatePicker(with: textField)
+        }
+        if textField == timeTF{
+            openTimePicker(with: textField)
+        }
+    }
+}
+//MARK: - DatePicker
 extension EditActivityViewController{
-    func openDatePicker(dateTextField: UITextField){
-        
-        let datePicker = UIDatePicker()
-        datePicker.datePickerMode = .date
-        datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
-        
-        datePicker.frame.size = CGSize(width: 0, height: 300)
-        datePicker.preferredDatePickerStyle = .wheels
-        
-        dateLabel.inputView = datePicker
-        
-        dateLabel.inputAccessoryView = setUpToolBar(with: dateTextField)
+
+    func openDatePicker(with textField: UITextField){
+        tempTextField = textField
+        picker.datePickerMode = .date
+        pickerMode = "date"
+        picker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
+        textField.inputView = picker
+        textField.inputAccessoryView = setUpToolBar()
     }
     
-    
-    func openTimePicker(timeTextField: UITextField){
-
-        let timePicker = UIDatePicker()
-        timePicker.datePickerMode = .time
-        timePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
-
-        timePicker.frame.size = CGSize(width: 0, height: 300)
-        timePicker.preferredDatePickerStyle = .wheels
-        timePicker.locale = NSLocale(localeIdentifier: "en_GB") as Locale
-
-        timeLabel.inputView = timePicker
-
-        timeLabel.inputAccessoryView = setUpToolBar(with: timeTextField)
+    func openTimePicker(with textField: UITextField){
+        tempTextField = textField
+        picker.datePickerMode = .time
+        pickerMode = "time"
+        picker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
+        picker.locale = NSLocale(localeIdentifier: "en_GB") as Locale
+        textField.inputView = picker
+        textField.inputAccessoryView = setUpToolBar()
     }
     
     @objc func dateChange(datePicker: UIDatePicker){
-        dateLabel.text = formatDate(date: datePicker.date)
-        timeLabel.text = formatTime(time: datePicker.date)
+        tempTextField.text = formatDate(date: datePicker.date, mode: pickerMode)
     }
     
-    func formatDate(date: Date) -> String{
+    func formatDate(date: Date, mode: String) -> String{
         let formatter = DateFormatter()
-        formatter.dateStyle = .medium
+        if mode == "date"{
+            formatter.dateStyle = .medium
+        }
+        if mode == "time"{
+            formatter.dateFormat = "HH:mm"
+        }
         return formatter.string(from: date)
-    }
-    
-    func formatTime(time: Date) -> String{
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
-        return formatter.string(from: time)
     }
 }
 
 //MARK: - ToolBar
 extension EditActivityViewController{
-    func setUpToolBar(with textField: UITextField) -> UIToolbar{
-        
+    func setUpToolBar() -> UIToolbar{
         let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 45))
         let cancelBtn = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelBtnPressed))
         let doneBtn = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneBtnPressed))
         let flexibelBtn = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        
         toolBar.barTintColor = .systemBackground
-        
         toolBar.setItems([cancelBtn, flexibelBtn, doneBtn], animated: false)
-        
         return toolBar
     }
     
     @objc func cancelBtnPressed(){
-        dateLabel.resignFirstResponder()
-        timeLabel.resignFirstResponder()
+        tempTextField.resignFirstResponder()
+        pickerMode = ""
+        tempTextField = UITextField()
     }
     
     @objc func doneBtnPressed(){
         
-        if let datePicker = dateLabel.inputView as? UIDatePicker{
-            dateLabel.text = formatDate(date: datePicker.date)
-        }
-        
-        if let datePicker = timeLabel.inputView as? UIDatePicker{
-            timeLabel.text = formatTime(time: datePicker.date)
+        if let datePicker = tempTextField.inputView as? UIDatePicker{
+            tempTextField.text = formatDate(date: datePicker.date, mode: pickerMode)
+            pickerMode = ""
+            tempTextField = UITextField()
         }
         view.endEditing(true)
     }
 }
-
