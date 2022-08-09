@@ -28,10 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //stop navigation bar background changes when scrolling down
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.configureWithOpaqueBackground()
-        navigationBarAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.systemBackground]
+        navigationBarAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
         navigationBarAppearance.backgroundColor = UIColor(named: "PrimaryColor")
         UINavigationBar.appearance().standardAppearance = navigationBarAppearance
-        
+        UIBarButtonItem.appearance().tintColor = .white
         return true
     }
 

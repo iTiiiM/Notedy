@@ -97,6 +97,23 @@ extension NewActivityViewController: UITextFieldDelegate{
             openTimePicker(with: textField)
         }
     }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        
+        //open datePicker with valued textField
+        let dateFormatter = DateFormatter()
+        if textField == dateTF{
+            dateFormatter.dateStyle = .medium
+            picker.date = dateFormatter.date(from: textField.text!)!
+        }
+        
+        if textField == timeTF{
+            dateFormatter.dateFormat = "HH:mm"
+            picker.date = dateFormatter.date(from: textField.text!)!
+        }
+        return true
+    }
+    
 }
 
 //MARK: - DatePicker
@@ -137,7 +154,6 @@ extension NewActivityViewController{
         }
         return formatter.string(from: date)
     }
-    
 }
 
 

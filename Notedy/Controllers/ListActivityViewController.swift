@@ -29,8 +29,8 @@ class ListActivityViewController: UITableViewController {
         
         guard let navBar = navigationController?.navigationBar else { fatalError("Navigation controller does not exist.")
         }
-        
-        navBar.tintColor = .systemBackground
+
+        navBar.tintColor = UIColor.white
         navBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.systemBackground]
         
         

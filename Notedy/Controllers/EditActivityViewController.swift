@@ -41,6 +41,14 @@ class EditActivityViewController: UIViewController {
         picker.preferredDatePickerStyle = .wheels
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+//        guard let navBar = navigationController?.navigationBar else { fatalError("Navigation controller does not exist.")
+//        }
+//
+//        navBar.tintColor = UIColor.white
+//        navBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.systemBackground]
+    }
+    
 //MARK: - Button Actions
     @IBAction func donePressed(_ sender: UIBarButtonItem) {
         if titleTF.text != ""{
@@ -106,12 +114,28 @@ class EditActivityViewController: UIViewController {
 //MARK: - TextField Delegate
 extension EditActivityViewController: UITextFieldDelegate{
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        print("textFieldDidBeginEditing")
         if textField == dateTF{
             openDatePicker(with: textField)
         }
         if textField == timeTF{
             openTimePicker(with: textField)
         }
+    }
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        
+        //open datePicker with valued textField
+        let dateFormatter = DateFormatter()
+        if textField == dateTF{
+            dateFormatter.dateStyle = .medium
+            picker.date = dateFormatter.date(from: textField.text!)!
+        }
+        
+        if textField == timeTF{
+            dateFormatter.dateFormat = "HH:mm"
+            picker.date = dateFormatter.date(from: textField.text!)!
+        }
+        return true
     }
 }
 //MARK: - DatePicker
