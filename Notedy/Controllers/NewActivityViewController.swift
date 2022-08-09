@@ -133,7 +133,6 @@ extension NewActivityViewController{
         picker.datePickerMode = .time
         pickerMode = "time"
         picker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
-        picker.locale = NSLocale(localeIdentifier: "en_GB") as Locale
         textField.inputView = picker
         textField.inputAccessoryView = setUpToolBar()
     }
@@ -168,11 +167,8 @@ extension NewActivityViewController{
         let cancelBtn = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelBtnPressed))
         let doneBtn = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(self.doneBtnPressed))
         let flexibelBtn = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        
-        toolBar.barTintColor = .systemBackground
-        
         toolBar.setItems([cancelBtn, flexibelBtn, doneBtn], animated: false)
-        
+        toolBar.barTintColor = UIColor(named: "PrimaryColor")
         return toolBar
     }
     

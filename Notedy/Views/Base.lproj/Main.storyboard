@@ -9,64 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="Notedy" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AppName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wFL-TC-IuA">
-                                <rect key="frame" x="0.0" y="108" width="390" height="63"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="52"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UG7-hf-tnA">
-                                <rect key="frame" x="167" y="753" width="80" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" name="SecondColor"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Note"/>
-                                <connections>
-                                    <action selector="noteButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tkB-CB-SHw"/>
-                                </connections>
-                            </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="list" translatesAutoresizingMaskIntoConstraints="NO" id="E0W-hr-HTL">
-                                <rect key="frame" x="280" y="506" width="80" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" systemColor="systemBackgroundColor"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pen" translatesAutoresizingMaskIntoConstraints="NO" id="N3k-ce-XFd">
-                                <rect key="frame" x="54" y="506" width="80" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" systemColor="systemBackgroundColor"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person" translatesAutoresizingMaskIntoConstraints="NO" id="yTq-Xd-GxE">
-                                <rect key="frame" x="165" y="310" width="80" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" systemColor="systemBackgroundColor"/>
-                            </imageView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" name="PrimaryColor"/>
-                        <constraints>
-                            <constraint firstItem="wFL-TC-IuA" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="XMO-po-qIy"/>
-                            <constraint firstItem="wFL-TC-IuA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fWu-G1-Mtg"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wFL-TC-IuA" secondAttribute="trailing" id="v1X-Ej-rU2"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="h3i-9g-XwO"/>
-                    <connections>
-                        <outlet property="titleName" destination="wFL-TC-IuA" id="SgR-Oj-FKc"/>
-                        <segue destination="fxD-Lg-3L5" kind="show" identifier="homeToList" id="xQ4-A8-1Hi"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="928.98550724637687" y="97.767857142857139"/>
-        </scene>
         <!--List Activity View Controller-->
         <scene sceneID="xiN-PM-T84">
             <objects>
@@ -273,12 +215,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="8LD-aU-ikx"/>
+                        <segue destination="fxD-Lg-3L5" kind="relationship" relationship="rootViewController" id="NOJ-ue-d1i"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MB4-B7-j4o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="18.840579710144929" y="97.767857142857139"/>
+            <point key="canvasLocation" x="789" y="97"/>
         </scene>
         <!--Edit Activity View Controller-->
         <scene sceneID="w6v-Ph-TOT">
@@ -368,21 +310,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="list" width="256" height="256"/>
-        <image name="pen" width="256" height="256"/>
-        <image name="person" width="256" height="256"/>
         <namedColor name="CellColor">
             <color red="0.9137254901960784" green="0.9137254901960784" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="PrimaryColor">
-            <color red="0.63499999046325684" green="0.60799998044967651" blue="0.99599999189376831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.63137254901960782" green="0.60784313725490191" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="SecondColor">
-            <color red="0.45490196078431372" green="0.72549019607843135" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

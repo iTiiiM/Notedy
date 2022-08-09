@@ -14,16 +14,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        //delay launchScreen
+        Thread.sleep(forTimeInterval: 0.5)
         // Override point for customization after application launch.
         
-//        do{
-//            let _ = try Realm()
-//            print("init Realm suscess.")
-//        } catch {
-//            print("Error init Realm, \(error)")
-//        }
-        
-//        print("Realm's Local : \(Realm.Configuration.defaultConfiguration.fileURL)")
+        //print realm's path file
+        //print("Realm's Local : \(Realm.Configuration.defaultConfiguration.fileURL)")
         
         //stop navigation bar background changes when scrolling down
         let navigationBarAppearance = UINavigationBarAppearance()
@@ -32,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationBarAppearance.backgroundColor = UIColor(named: "PrimaryColor")
         UINavigationBar.appearance().standardAppearance = navigationBarAppearance
         UIBarButtonItem.appearance().tintColor = .white
+        
         return true
     }
 

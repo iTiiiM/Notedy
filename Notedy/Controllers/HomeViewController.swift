@@ -8,7 +8,7 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    let appName = "Notedy"
+    let appName = "Follow your think with your notedy."
     @IBOutlet weak var titleName: UILabel!
     
     
@@ -24,10 +24,5 @@ class HomeViewController: UIViewController {
             index += 1
         }
     }
-    
-    @IBAction func noteButtonPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "homeToList", sender: self)
-    }
-    
 }
 
