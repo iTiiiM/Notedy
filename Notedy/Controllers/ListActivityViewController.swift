@@ -19,23 +19,14 @@ class ListActivityViewController: UITableViewController {
         super.viewDidLoad()
         
         title = "Activity List"
-        
-        loadData()
-
+        guard let navBar = navigationController?.navigationBar else { fatalError("Navigation controller does not exist.") }
+        navBar.tintColor = UIColor.white
+        navBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.systemBackground]
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        guard let navBar = navigationController?.navigationBar else { fatalError("Navigation controller does not exist.")
-        }
-
-        navBar.tintColor = UIColor.white
-        navBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.systemBackground]
-        
-        
         loadData()
-        
     }
     
     // MARK: - Table view data source
@@ -45,45 +36,19 @@ class ListActivityViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "listCell", for: indexPath) as! ImformationTableViewCell
-        if let items = activities?[indexPath.row]{
-            cell.titleLabel.text = items.title
-            cell.timeLabel.text = items.time
-            cell.dateTime.text = items.date
-            
-            if items.location != ""{
-                cell.locationLabel.text = items.location
-            } else {
-                cell.locationLabel.text = "No location"
-            }
-            
-            if items.detail != ""{
-                cell.detailLabel.text = items.detail
-            } else {
-                cell.detailLabel.text = "No detail"
-            }
-            
-            
-        } else {
-            cell.textLabel?.text = "No activity."
-        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ImformationTableViewCell.identifer, for: indexPath) as? ImformationTableViewCell else { return UITableViewCell() }
         
+        cell.configureCell(item: activities?[indexPath.row])
         return cell
     }
     
-    
     func loadData(){
-        
         activities = realm.objects(Activity.self)
-        
         tableView.reloadData()
-        
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         performSegue(withIdentifier: "listToEditActivity", sender: self)
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

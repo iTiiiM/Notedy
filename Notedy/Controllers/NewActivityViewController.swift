@@ -22,7 +22,6 @@ class NewActivityViewController: UIViewController {
     let realm = try! Realm()
     let picker = UIDatePicker()
     var tempTextField = UITextField()
-    var pickerMode: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,11 +32,12 @@ class NewActivityViewController: UIViewController {
         timeTF.delegate = self
         titleTF.delegate = self
         
-        dateTF.text = formatDate(date: Date(), mode: "date")
-        timeTF.text = formatDate(date: Date(), mode: "time")
+        dateTF.text = formatDate(date: Date(), .date)
+        timeTF.text = formatDate(date: Date(), .time)
         
         picker.frame.size = CGSize(width: 0, height: 300)
         picker.preferredDatePickerStyle = .wheels
+        picker.locale = Locale(identifier: "TH")
         
     }
     
@@ -91,10 +91,10 @@ extension NewActivityViewController: UITextFieldDelegate{
         
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == dateTF{
-            openDatePicker(with: textField)
+            openPicker(with: textField, mode: .date)
         }
         if textField == timeTF{
-            openTimePicker(with: textField)
+            openPicker(with: textField, mode: .time)
         }
     }
     
@@ -119,38 +119,22 @@ extension NewActivityViewController: UITextFieldDelegate{
 //MARK: - DatePicker
 extension NewActivityViewController{
     
-    func openDatePicker(with textField: UITextField){
+    func openPicker(with textField: UITextField, mode: UIDatePicker.Mode) {
         tempTextField = textField
-        picker.datePickerMode = .date
-        pickerMode = "date"
+        picker.datePickerMode = mode
         picker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
         textField.inputView = picker
         textField.inputAccessoryView = setUpToolBar()
     }
-    
-    func openTimePicker(with textField: UITextField){
-        tempTextField = textField
-        picker.datePickerMode = .time
-        pickerMode = "time"
-        picker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
-        textField.inputView = picker
-        textField.inputAccessoryView = setUpToolBar()
-    }
-
-    
     
     @objc func dateChange(datePicker: UIDatePicker){
-        tempTextField.text = formatDate(date: datePicker.date, mode: pickerMode)
+        tempTextField.text = formatDate(date: datePicker.date, datePicker.datePickerMode)
     }
     
-    func formatDate(date: Date, mode: String) -> String{
+    func formatDate(date: Date, _ mode: UIDatePicker.Mode) -> String{
         let formatter = DateFormatter()
-        if mode == "date"{
-            formatter.dateStyle = .medium
-        }
-        if mode == "time"{
-            formatter.dateFormat = "HH:mm"
-        }
+        if mode == .date { formatter.dateStyle = .medium }
+        if mode == .time { formatter.dateFormat = "HH:mm" }
         return formatter.string(from: date)
     }
 }
@@ -175,14 +159,12 @@ extension NewActivityViewController{
     @objc func cancelBtnPressed(){
         tempTextField.resignFirstResponder()
         tempTextField = UITextField()
-        pickerMode = ""
     }
     
     @objc func doneBtnPressed(){
         if let datePicker = tempTextField.inputView as? UIDatePicker{
-            tempTextField.text = formatDate(date: datePicker.date, mode: pickerMode)
+            tempTextField.text = formatDate(date: datePicker.date, datePicker.datePickerMode)
             tempTextField = UITextField()
-            pickerMode = ""
         }
         view.endEditing(true)
     }

@@ -9,6 +9,7 @@ import UIKit
 
 class ImformationTableViewCell: UITableViewCell {
 
+    static let identifer = "listCell"
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -26,6 +27,18 @@ class ImformationTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func configureCell(item: Activity?) {
+        if let item = item {
+            titleLabel.text = item.title
+            timeLabel.text = item.time
+            dateTime.text = item.date
+            locationLabel.text = item.location.isEmpty ?  "No location": item.location
+            detailLabel.text = item.detail.isEmpty ? "No detail" : item.detail
+        } else {
+            textLabel?.text = "No activity."
+        }
     }
 
 }
